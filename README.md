@@ -1,2 +1,2 @@
 # DNAlerter
-Unsafe network alerter
+Приложение оповещающее о небезопасном подключении к сети

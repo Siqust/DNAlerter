@@ -3,6 +3,7 @@
 #include <thread>
 #include <fstream>
 #include <atomic>
+#include <string>
 
 #define IDI_MYICON 101
 #define ID_TRAY_APP_ICON 1
@@ -200,7 +201,7 @@ int check_win_registry() {
 		std::wcout <<"Last Category: "<< lastCategory << std::endl;
 		RegCloseKey(hKey);
 		
-		std::ofstream myFile("./securityalerter/threat", std::ios::out | std::ios::trunc);
+		std::ofstream myFile("./is_threat", std::ios::out | std::ios::trunc);
 		if (myFile.is_open()) {
 			myFile << lastCategory;
 			myFile.close();
@@ -213,14 +214,14 @@ int check_win_registry() {
 int main() {
     startup();
 	
-    WNDCLASSEX wc = {0};
-    wc.cbSize = sizeof(WNDCLASSEX);
+    WNDCLASSEXW wc = {0};
+    wc.cbSize = sizeof(WNDCLASSEXW);
     wc.lpfnWndProc = WndProc;
-    wc.hInstance = GetModuleHandle(NULL);
-    wc.lpszClassName = "TrayAppClass";
-    RegisterClassEx(&wc);
+    wc.hInstance = GetModuleHandleW(NULL);
+    wc.lpszClassName = L"TrayAppClass"; // Wide-character string
+    RegisterClassExW(&wc);
 
-    hwnd = CreateWindow("TrayAppClass", "TrayApp", WS_OVERLAPPEDWINDOW,
+    hwnd = CreateWindowW(L"TrayAppClass", L"TrayApp", WS_OVERLAPPEDWINDOW,
                         0, 0, 0, 0, NULL, NULL, wc.hInstance, NULL);
 
     if (!hwnd) {

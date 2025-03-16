@@ -5,7 +5,7 @@
   "description": "Page checker",
   "web_accessible_resources": [
     {
-      "resources": ["threat"],
+      "resources": ["is_threat"],
 	  "matches": ["<all_urls>"]
 	}
   ],

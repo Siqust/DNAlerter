@@ -1,4 +1,3 @@
-// content.js (новый файл)
 const wordsToCheck = ['пароль', 'password'];
 const pageContent = document.documentElement.innerHTML.toLowerCase();
 let anythingFound = false;
